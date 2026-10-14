@@ -39,7 +39,7 @@ namespace cppdlr {
     auto [xgl, wgl] = gaussquad(n); // Get Gauss-Legendre nodes and weights
     for (int j = 0; j < n; j++) {
       x(j) = xgl(j);
-      w(j) = pow(-1, j) * sqrt((1 - pow(x(j), 2)) * wgl(j)); // Barycentric weights
+      w(j) = std::pow(-1, j) * std::sqrt((1 - std::pow(x(j), 2)) * wgl(j)); // Barycentric weights
     }
   }
 
@@ -136,7 +136,7 @@ namespace cppdlr {
     xgl(n / 2) = 0;                   // If odd number of nodes, middle node is 0
     for (int i = 0; i < n / 2; i++) { // Loop through nodes
       convcount = 0;
-      x         = cos((2 * i + 1) * std::numbers::pi / (2 * n)); // Initial guess: Chebyshev node
+      x         = std::cos((2 * i + 1) * std::numbers::pi / (2 * n)); // Initial guess: Chebyshev node
       while (true) {                                             // Newton iteration
         auto [p, dp] = leg_eval(n, x);
         dx           = -p / dp;
